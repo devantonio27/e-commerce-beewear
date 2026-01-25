@@ -598,6 +598,12 @@ async function main() {
             variantData.color as keyof (typeof productImages)[typeof productKey]
           ] || [];
 
+        if (!variantImages[0]) {
+          throw new Error(
+            `Imagem não encontrada para ${productData.name} - ${variantData.color}`,
+          );
+        }
+
         console.log(`  🎨 Criando variante: ${variantData.color}`);
 
         await db.insert(productVariantTable).values({
@@ -605,7 +611,7 @@ async function main() {
           name: variantData.color,
           productId: productId,
           color: variantData.color,
-          imageUrl: variantImages[0] || "",
+          imageUrl: variantImages[0],
           priceInCents: variantData.price,
           slug: generateSlug(`${productData.name}-${variantData.color}`),
         });
