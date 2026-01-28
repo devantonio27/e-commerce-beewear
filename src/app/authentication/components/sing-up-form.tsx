@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
 
 const formSchema = z
   .object({
@@ -56,8 +58,19 @@ const SingUpForm = () => {
   });
 
   async function onSubmit(values: FormValues) {
-    console.log("fomulario valido e enviado");
-    console.log(values);
+    const { data, error } = await authClient.signUp.email({
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success("Usuario criado com sucesso");
+        },
+        onError: (error) => {
+          toast.error(error.error.message);
+        },
+      },
+    });
   }
 
   return (
