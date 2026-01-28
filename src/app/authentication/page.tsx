@@ -3,8 +3,8 @@
 import { Header } from "@/components/common/header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import SingInForm from "./components/sing-in-form";
-import SingUpForm from "./components/sing-up-form";
+import SignInForm from "./components/sign-in-form";
+import SignUpForm from "./components/sign-up-form";
 
 const Authentication = () => {
   return (
@@ -18,10 +18,10 @@ const Authentication = () => {
             <TabsTrigger value="sing-up">Criar conta</TabsTrigger>
           </TabsList>
           <TabsContent value="sing-in" className="w-full">
-            <SingInForm />
+            <SignInForm />
           </TabsContent>
           <TabsContent value="sing-up" className="w-full">
-            <SingUpForm />
+            <SignUpForm />
           </TabsContent>
         </Tabs>
       </div>
