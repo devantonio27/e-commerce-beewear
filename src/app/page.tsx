@@ -1,11 +1,43 @@
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
-const Home = () => {
+import { Header } from "@/components/common/header";
+import ProductList from "@/components/common/product-list";
+import { db } from "@/db";
+
+const Home = async () => {
+  const products = await db.query.productTable.findMany({
+    with: {
+      variants: true,
+    },
+  });
   return (
-    <div>
-      <h1>Hello World</h1>
-      <Button>bootcamp</Button>
-    </div>
+    <>
+      <Header />
+      <div className="space-y-6">
+        <div className="px-5">
+          <Image
+            src="/banner01.svg"
+            alt="Leve uma vida com estilo"
+            height={0}
+            width={0}
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </div>
+
+        <ProductList products={products} title="Mais vendidos" />
+        <div className="px-5">
+          <Image
+            src="/banner02.svg"
+            alt="Seja autêntico"
+            height={0}
+            width={0}
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </div>
+      </div>
+    </>
   );
 };
 
