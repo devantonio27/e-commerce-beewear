@@ -9,6 +9,14 @@ export const auth = betterAuth({
     enabled: true,
   },
 
+  baseURL: process.env.BETTER_AUTH_URL,
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
+
   database: drizzleAdapter(db, {
     provider: "pg",
     schema,
@@ -22,5 +30,8 @@ export const auth = betterAuth({
   },
   account: {
     modelName: "accountTable",
+  },
+  verification: {
+    modelName: "verificationTable",
   },
 });
