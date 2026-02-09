@@ -43,7 +43,11 @@ const CartItem = ({
               <MinusIcon />
             </Button>
             <p className="text-xs font-medium">{quantity}</p>
-            <Button className="h-4 w-4" variant="ghost" onClick={() => {}}>
+            <Button
+              className="h-4 w-4 text-center"
+              variant="ghost"
+              onClick={() => {}}
+            >
               <PlusIcon />
             </Button>
           </div>
