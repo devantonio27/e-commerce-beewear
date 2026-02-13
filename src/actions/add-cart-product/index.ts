@@ -1,6 +1,6 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { headers } from "next/headers";
 
 import { db } from "@/db";
@@ -44,8 +44,10 @@ export const addProductToCart = async (data: addProductToCartSchema) => {
   //Verificar se a variante ja existe no carrinho
   const cartItem = await db.query.cartItemTable.findFirst({
     where: (cartItem, { eq }) =>
-      eq(cartItem.cartId, cartId ?? "") &&
-      eq(cartItem.productVariantId, data.productVariantId),
+      and(
+        eq(cartItem.cartId, cartId!),
+        eq(cartItem.productVariantId, data.productVariantId),
+      ),
   });
   if (cartItem) {
     await db
