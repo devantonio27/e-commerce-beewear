@@ -1,9 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import next from "next";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z, { email } from "zod";
+import z from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
-  email: z.email("Email inválido"),
+  email: z.string().email("Email inválido"),
   password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres"),
 });
 

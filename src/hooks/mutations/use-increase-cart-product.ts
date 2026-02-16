@@ -5,7 +5,7 @@ import { addProductToCart } from "@/actions/add-cart-product";
 import { getUseCartQueryKey } from "../queries/use-cart";
 
 export const getIncreaseCartProductMutationKey = (productVariantId: string) =>
-  ["decrease-cart-product-quantity", productVariantId] as const;
+  ["increase-cart-product-quantity", productVariantId] as const;
 
 export const useIncreaseCartProduct = (productVariantId: string) => {
   const queryClient = useQueryClient();

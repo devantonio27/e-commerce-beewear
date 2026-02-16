@@ -60,7 +60,6 @@ const SignUpForm = () => {
   });
 
   async function onSubmit(values: FormValues) {
-    console.log(values);
     const { data, error } = await authClient.signUp.email({
       name: values.name,
       email: values.email,

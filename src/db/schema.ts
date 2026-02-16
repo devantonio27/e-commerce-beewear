@@ -200,7 +200,7 @@ export const cartItemTable = pgTable("cart_item", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-export const cartItemRealtions = relations(cartItemTable, ({ one }) => ({
+export const cartItemRelations = relations(cartItemTable, ({ one }) => ({
   cart: one(cartTable, {
     fields: [cartItemTable.cartId],
     references: [cartTable.id],
