@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
+import { toast } from "sonner";
 import z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -16,9 +17,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useCreateShippingAddress } from "@/hooks/mutations/use-create-shipping-address";
 
 const addressFormSchema = z.object({
-  email: z.string().min(1, "Email é obrigatório.").email("Email inválido."),
+  email: z.email("Email inválido."),
   fullName: z.string().min(1, "Nome completo é obrigatório.").trim(),
   cpf: z
     .string()
@@ -32,14 +34,14 @@ const addressFormSchema = z.object({
     .min(1, "Celular é obrigatório.")
     .refine(
       (val) => val.replace(/\D/g, "").length === 11,
-      "Celular deve conter 11 dígitos."
+      "Celular deve conter 11 dígitos.",
     ),
   zipCode: z
     .string()
     .min(1, "CEP é obrigatório.")
     .refine(
       (val) => val.replace(/\D/g, "").length === 8,
-      "CEP deve conter 8 dígitos."
+      "CEP deve conter 8 dígitos.",
     ),
   address: z.string().min(1, "Endereço é obrigatório.").trim(),
   number: z.string().min(1, "Número é obrigatório.").trim(),
@@ -52,6 +54,8 @@ const addressFormSchema = z.object({
 type AddressFormValues = z.infer<typeof addressFormSchema>;
 
 const AddressForm = () => {
+  const createShippingAddressMutation = useCreateShippingAddress();
+
   const form = useForm<AddressFormValues>({
     resolver: zodResolver(addressFormSchema),
     defaultValues: {
@@ -69,8 +73,14 @@ const AddressForm = () => {
     },
   });
 
-  function onSubmit(values: AddressFormValues) {
-    console.log(values);
+  async function onSubmit(values: AddressFormValues) {
+    try {
+      await createShippingAddressMutation.mutateAsync(values);
+      toast.success("Endereço cadastrado com sucesso.");
+      form.reset();
+    } catch {
+      toast.error("Erro ao cadastrar endereço.");
+    }
   }
 
   return (
@@ -261,7 +271,12 @@ const AddressForm = () => {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit">Continuar</Button>
+            <Button
+              type="submit"
+              disabled={createShippingAddressMutation.isPending}
+            >
+              Continuar
+            </Button>
           </CardFooter>
         </form>
       </Form>
