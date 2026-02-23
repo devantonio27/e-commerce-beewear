@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { shippingAddressTable } from "@/db/schema";
+import { useUpdateCartShippingAddress } from "@/hooks/mutations/use-update-cart-shipping-address";
+import { useCart } from "@/hooks/queries/use-cart";
 import { useShippingAddresses } from "@/hooks/queries/use-shipping-addresses";
 
 import AddressForm from "./address-form";
@@ -19,6 +23,66 @@ const Addresses = ({ shippingAddresses }: addressesProps) => {
   const { data: addresses } = useShippingAddresses({
     initialData: shippingAddresses,
   });
+  const { data: cart } = useCart();
+
+  useEffect(() => {
+    const shippingAddressId = cart?.shippingAddress?.id;
+    if (
+      selectedAddress === null &&
+      shippingAddressId &&
+      addresses?.some((a) => a.id === shippingAddressId)
+    ) {
+      setSelectedAddress(shippingAddressId);
+    }
+  }, [cart, addresses, selectedAddress]);
+
+  const updateCartShippingAddressMutation = useUpdateCartShippingAddress();
+
+  const handleAddressCreated = (shippingAddressId: string) => {
+    updateCartShippingAddressMutation.mutate(
+      { shippingAddressId },
+      {
+        onSuccess: () => {
+          toast.success("Endereço selecionado para entrega.");
+        },
+        onError: () => {
+          toast.error("Erro ao vincular endereço ao carrinho.");
+        },
+      },
+    );
+  };
+
+  const handleValueChange = (value: string) => {
+    setSelectedAddress(value);
+    if (value !== "add_new" && addresses?.some((a) => a.id === value)) {
+      updateCartShippingAddressMutation.mutate(
+        { shippingAddressId: value },
+        {
+          onSuccess: () => {
+            toast.success("Endereço selecionado para entrega.");
+          },
+          onError: () => {
+            toast.error("Erro ao vincular endereço ao carrinho.");
+          },
+        },
+      );
+    }
+  };
+
+  const handleGoToPayment = () => {
+    if (!selectedAddress || selectedAddress === "add_new") return;
+    updateCartShippingAddressMutation.mutate(
+      { shippingAddressId: selectedAddress },
+      {
+        onSuccess: () => {
+          toast.success("Endereço selecionado para entrega.");
+        },
+        onError: () => {
+          toast.error("Erro ao vincular endereço ao carrinho.");
+        },
+      },
+    );
+  };
 
   return (
     <Card>
@@ -26,7 +90,7 @@ const Addresses = ({ shippingAddresses }: addressesProps) => {
         <CardTitle>Identificação</CardTitle>
       </CardHeader>
       <CardContent>
-        <RadioGroup value={selectedAddress} onValueChange={setSelectedAddress}>
+        <RadioGroup value={selectedAddress} onValueChange={handleValueChange}>
           {addresses?.map((address) => (
             <Card key={address.id}>
               <CardContent>
@@ -63,7 +127,23 @@ const Addresses = ({ shippingAddresses }: addressesProps) => {
           </Card>
         </RadioGroup>
 
-        {selectedAddress === "add_new" && <AddressForm />}
+        {selectedAddress === "add_new" && (
+          <AddressForm onAddressCreated={handleAddressCreated} />
+        )}
+
+        {selectedAddress &&
+          selectedAddress !== "add_new" &&
+          addresses?.some((a) => a.id === selectedAddress) && (
+            <div className="mt-4">
+              <Button
+                className="w-full"
+                onClick={handleGoToPayment}
+                disabled={updateCartShippingAddressMutation.isPending}
+              >
+                Ir para pagamento
+              </Button>
+            </div>
+          )}
       </CardContent>
     </Card>
   );
