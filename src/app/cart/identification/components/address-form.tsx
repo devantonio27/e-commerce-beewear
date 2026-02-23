@@ -19,6 +19,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useCreateShippingAddress } from "@/hooks/mutations/use-create-shipping-address";
 
+interface AddressFormProps {
+  onAddressCreated?: (shippingAddressId: string) => void;
+}
+
 const addressFormSchema = z.object({
   email: z.email("Email inválido."),
   fullName: z.string().min(1, "Nome completo é obrigatório.").trim(),
@@ -53,7 +57,7 @@ const addressFormSchema = z.object({
 
 type AddressFormValues = z.infer<typeof addressFormSchema>;
 
-const AddressForm = () => {
+const AddressForm = ({ onAddressCreated }: AddressFormProps) => {
   const createShippingAddressMutation = useCreateShippingAddress();
 
   const form = useForm<AddressFormValues>({
@@ -75,9 +79,10 @@ const AddressForm = () => {
 
   async function onSubmit(values: AddressFormValues) {
     try {
-      await createShippingAddressMutation.mutateAsync(values);
+      const result = await createShippingAddressMutation.mutateAsync(values);
       toast.success("Endereço cadastrado com sucesso.");
       form.reset();
+      onAddressCreated?.(result.shippingAddressId);
     } catch {
       toast.error("Erro ao cadastrar endereço.");
     }
@@ -272,10 +277,11 @@ const AddressForm = () => {
           </CardContent>
           <CardFooter>
             <Button
+              className="w-full"
               type="submit"
               disabled={createShippingAddressMutation.isPending}
             >
-              Continuar
+              Salvar endereço
             </Button>
           </CardFooter>
         </form>

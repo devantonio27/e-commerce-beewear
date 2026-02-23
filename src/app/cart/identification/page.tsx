@@ -29,6 +29,7 @@ const IdentificatoinPage = async () => {
 
   const shippingAddresses = await db.query.shippingAddressTable.findMany({
     where: eq(shippingAddressTable.userId, session.user.id),
+    orderBy: (address, { desc }) => desc(address.createdAt),
   });
   return (
     <>

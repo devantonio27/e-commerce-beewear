@@ -1,10 +1,9 @@
 "use server";
 
-import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 
 import { db } from "@/db";
-import { cartTable, shippingAddressTable } from "@/db/schema";
+import { shippingAddressTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
 import {
@@ -25,14 +24,6 @@ export const createShippingAddress = async (data: CreateShippingAddressSchema) =
     throw new Error("Unauthorized");
   }
 
-  const cart = await db.query.cartTable.findFirst({
-    where: (cart, { eq }) => eq(cart.userId, session.user.id),
-  });
-
-  if (!cart) {
-    throw new Error("Cart not found");
-  }
-
   const [shippingAddress] = await db
     .insert(shippingAddressTable)
     .values({
@@ -51,11 +42,6 @@ export const createShippingAddress = async (data: CreateShippingAddressSchema) =
       cpfOrCnpj: onlyDigits(data.cpf),
     })
     .returning();
-
-  await db
-    .update(cartTable)
-    .set({ shippingAddressId: shippingAddress.id })
-    .where(eq(cartTable.id, cart.id));
 
   return { shippingAddressId: shippingAddress.id };
 };
