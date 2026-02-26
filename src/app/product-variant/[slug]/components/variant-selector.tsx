@@ -20,7 +20,7 @@ const VariantSelector = ({
           key={variant.id}
           className={
             selectedVariant === variant.slug
-              ? "border-primary rounded-xl border-2"
+              ? "border-primary overflow-hidden rounded-xl border-3"
               : ""
           }
         >
@@ -29,6 +29,7 @@ const VariantSelector = ({
             height={68}
             src={variant.imageUrl}
             alt={variant.name}
+            className="rounded-xl"
           />
         </Link>
       ))}
