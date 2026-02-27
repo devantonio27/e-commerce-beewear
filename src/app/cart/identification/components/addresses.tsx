@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -19,6 +20,7 @@ interface addressesProps {
 }
 
 const Addresses = ({ shippingAddresses }: addressesProps) => {
+  const router = useRouter();
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
   const { data: addresses } = useShippingAddresses({
     initialData: shippingAddresses,
@@ -76,6 +78,7 @@ const Addresses = ({ shippingAddresses }: addressesProps) => {
       {
         onSuccess: () => {
           toast.success("Endereço selecionado para entrega.");
+          router.push("/cart/confirmation");
         },
         onError: () => {
           toast.error("Erro ao vincular endereço ao carrinho.");
