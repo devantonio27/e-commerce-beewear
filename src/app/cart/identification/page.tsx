@@ -48,7 +48,7 @@ const IdentificatoinPage = async () => {
     0,
   );
   return (
-    <div className="space-y-12">
+    <div>
       <Header />
       <div className="space-y-4 px-5">
         <Addresses shippingAddresses={shippingAddresses} />
@@ -65,7 +65,9 @@ const IdentificatoinPage = async () => {
           }))}
         />
       </div>
-      <Footer />
+      <div className="mt-12">
+        <Footer />
+      </div>
     </div>
   );
 };
