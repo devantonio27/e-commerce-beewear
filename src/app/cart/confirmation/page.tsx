@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 
 import Footer from "@/components/common/footer";
 import { Header } from "@/components/common/header";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
@@ -47,32 +46,36 @@ const ConfirmationPage = async () => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <div className="flex-1 space-y-4 px-5">
-        <Card>
-          <CardHeader>
-            <CardTitle>Identificação</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <Card>
-              <CardContent>
-                <p className="text-sm">{formatAddress(cart.shippingAddress)}</p>
-              </CardContent>
-            </Card>
-            <FinishOrderButton />
-          </CardContent>
-        </Card>
-        <CartSummary
-          subtotalInCents={cartTotalInCents}
-          totalInCents={cartTotalInCents}
-          products={cart.items.map((item) => ({
-            id: item.productVariant.id,
-            name: item.productVariant.product.name,
-            variantName: item.productVariant.name,
-            quantity: item.quantity,
-            priceInCents: item.productVariant.priceInCents,
-            imageUrl: item.productVariant.imageUrl,
-          }))}
-        />
+      <div className="flex flex-1 flex-col gap-6 px-5 lg:flex-row lg:px-20 xl:px-40">
+        <div className="flex-1 space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Identificação</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Card>
+                <CardContent>
+                  <p className="text-sm">{formatAddress(cart.shippingAddress)}</p>
+                </CardContent>
+              </Card>
+              <FinishOrderButton />
+            </CardContent>
+          </Card>
+        </div>
+        <div className="lg:w-[400px] lg:self-start lg:sticky lg:top-6">
+          <CartSummary
+            subtotalInCents={cartTotalInCents}
+            totalInCents={cartTotalInCents}
+            products={cart.items.map((item) => ({
+              id: item.productVariant.id,
+              name: item.productVariant.product.name,
+              variantName: item.productVariant.name,
+              quantity: item.quantity,
+              priceInCents: item.productVariant.priceInCents,
+              imageUrl: item.productVariant.imageUrl,
+            }))}
+          />
+        </div>
       </div>
       <div className="mt-12">
         <Footer />
