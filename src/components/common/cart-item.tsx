@@ -59,7 +59,7 @@ const CartItem = ({
   };
 
   return (
-    <div className="item-center flex justify-between">
+    <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
         <Image
           src={productVariantImageUrl}
@@ -70,7 +70,7 @@ const CartItem = ({
         />
 
         <div className="flex flex-col gap-1">
-          <p className="tex-sm font-semibold">{productName}</p>
+          <p className="text-sm font-semibold">{productName}</p>
           <p className="text-muted-foreground text-xs font-medium">
             {productVariantName}
           </p>

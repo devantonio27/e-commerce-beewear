@@ -51,7 +51,7 @@ const CartSummary = ({
         </div>
 
         {products.map((product) => (
-          <div className="item-center flex justify-between" key={product.id}>
+          <div className="flex items-center justify-between" key={product.id}>
             <div className="flex items-center gap-4">
               <Image
                 src={product.imageUrl}
@@ -62,7 +62,7 @@ const CartSummary = ({
               />
 
               <div className="flex flex-col gap-1">
-                <p className="tex-sm font-semibold">{product.name}</p>
+                <p className="text-sm font-semibold">{product.name}</p>
                 <p className="text-muted-foreground text-xs font-medium">
                   {product.variantName}
                 </p>

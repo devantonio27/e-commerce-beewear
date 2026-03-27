@@ -50,20 +50,24 @@ const IdentificatoinPage = async () => {
   return (
     <div>
       <Header />
-      <div className="space-y-4 px-5">
-        <Addresses shippingAddresses={shippingAddresses} />
-        <CartSummary
-          subtotalInCents={cartTotalInCents}
-          totalInCents={cartTotalInCents}
-          products={cart.items.map((item) => ({
-            id: item.productVariant.id,
-            name: item.productVariant.product.name,
-            variantName: item.productVariant.name,
-            quantity: item.quantity,
-            priceInCents: item.productVariant.priceInCents,
-            imageUrl: item.productVariant.imageUrl,
-          }))}
-        />
+      <div className="flex flex-col gap-6 px-5 lg:flex-row lg:px-20 xl:px-40">
+        <div className="flex-1">
+          <Addresses shippingAddresses={shippingAddresses} />
+        </div>
+        <div className="lg:w-[400px] lg:self-start lg:sticky lg:top-6">
+          <CartSummary
+            subtotalInCents={cartTotalInCents}
+            totalInCents={cartTotalInCents}
+            products={cart.items.map((item) => ({
+              id: item.productVariant.id,
+              name: item.productVariant.product.name,
+              variantName: item.productVariant.name,
+              quantity: item.quantity,
+              priceInCents: item.productVariant.priceInCents,
+              imageUrl: item.productVariant.imageUrl,
+            }))}
+          />
+        </div>
       </div>
       <div className="mt-12">
         <Footer />
