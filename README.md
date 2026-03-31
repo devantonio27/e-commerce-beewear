@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">🐝 Beewear E-commerce</h1>
 
-## Getting Started
+<p align="center">
+  Uma plataforma de e-commerce moderna, rápida e escalável, focada em performance e experiência do usuário (UX).
+</p>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tecnologias Utilizadas
+
+Este projeto foi construído com foco em produtividade e tecnologias modernas do ecossistema React:
+
+- **[Next.js (App Router)](https://nextjs.org/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[Tailwind CSS](https://tailwindcss.com/)**
+- **[React Query](https://tanstack.com/query/latest)**
+- **[Zod](https://zod.dev/)**
+- **Server Actions (Next.js)**
+- **[PostgreSQL](https://www.postgresql.org/)**
+- **[Drizzle ORM](https://orm.drizzle.team/)**
+
+---
+
+## 🏗️ Conceitos Aplicados
+
+- **Arquitetura Client/Server Components:** Separação clara entre componentes de interface e renderização do lado do servidor via Next.js App Router.
+- **Type Safety de ponta a ponta:** Uso conjunto e tipado do TypeScript, Zod e Drizzle ORM.
+- **Otimizações de Renderização:** Estratégias de cache com React Query e controle de invalidação de dados.
+- **Separação de Preocupações (SoC):** Divisão de lógicas complexas em _Actions_, _Hooks_ customizados e _Componentes UI_.
+- **Mobile-first Design:** Layout responsivo focado inicialmente em dispositivos móveis, escalando suavemente para desktop.
+
+---
+
+## 📂 Estrutura de Pastas
+
+A arquitetura do projeto foi pensada para facilitar a manutenção e escalabilidade:
+
+```text
+src/
+├── actions/      # Next.js Server Actions para mutações
+├── app/          # Rotas e páginas (App Router)
+├── components/   # Componentes globais e de UI
+├── db/           # Configurações do Drizzle ORM e schemas
+├── helpers/      # Funções utilitárias e de formatação
+├── hooks/        # Custom React hooks (React Query etc.)
+├── lib/          # Configurações de bibliotecas externas
+└── providers/    # Contextos e provedores globais (QueryClient, Autenticação)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Funcionalidades Principais
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Catálogo de produtos com listas organizadas.
+- Carrinho de compras complexo e sincronizado com o banco de dados.
+- Layout totalmente responsivo (mobile e desktop).
+- Funcionalidade de checkout integrado.
+- Autenticação de usuários.
+- Visualização detalhada de produtos e variações.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛡️ Segurança
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Validação rigorosa de formulários e inputs via **Zod**.
+- Tipagem garantida em tempo de execução para as Server Actions.
+- Banco de dados protegido contra injeção de SQL nativamente pelo **Drizzle ORM**.
+- Validação de segurança sobre rotas sensíveis como carrinho e manipulação de pedidos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔍 Code Review
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Constantes melhorias são aplicadas no projeto. Algumas das melhorias destacadas em codes reviews recentes incluem:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Refatoração UI:** Migração e adaptação constante de layouts para tornar a experiência cross-device perfeita.
+- **Correções Críticas de Schema Zod/Drizzle:** Remoção de bugs silenciosos e tipagens flexíveis para assegurar consistência de dados estritos.
+- **Otimização de Código de Produção:** Limpeza rigorosa de imports ociosos e logs sensíveis ao longo do ciclo de vida da aplicação.
+- **Padronização:** Organização concisa nas _Query Keys e Mutation Keys_ do React Query para afinar o cache e gerenciamento de estado cliente/servidor.
+
+---
+
+## ⚡ Desafios Enfrentados
+
+No decorrer do desenvolvimento, soluções técnicas sofisticadas foram aplicadas para resolver gargalos críticos de um e-commerce:
+
+- **Gerenciamento de Estado do Carrinho:** Modelar uma interface otimista reagindo instantaneamente, ao mesmo tempo em que o banco sincronizava em background.
+- **Sincronização Cliente/Servidor:** Estabelecer a comunicação robusta usando Server Actions sem perder a performance e fluxo na camada de componentes cliente.
+- **Organização de Mutations e Queries:** Controlar a invalidação de cache para evitar múltiplas buscas desnecessárias sempre que um item sofria alteração de quantidade ou era removido.
+
+---
+
+## 📋 Melhorias Futuras
+
+- [ ] Implementar sistema robusto de Rate Limiting para maior resiliência de API.
+- [ ] Adicionar testes E2E ou unitários para fluxos fundamentais (como checkout).
+- [ ] Aprimoramento contínuo de atributos ARIA para maior acessibilidade.
+- [ ] Criar testes robustos com Optimistic Updates nativos do React Query no carrinho.
+
+---
+
+## 🟢 Deploy
+
+O projeto está disponível para acesso na URL abaixo:
+
+🔗 **[Acesso ao Beewear E-commerce (Placeholder)](#https://e-commerce-beewear.vercel.app/)**
+
+---
+
+## 💡 Sobre o Projeto
+
+O "Beewear E-commerce" começou como um projeto de estudo avançado e portfólio. Seu propósito é provar a capacidade de construir sistemas transacionais completos, aliando uma Interface de Usuário bem cuidada, escalada e perfomática com um Back-end moderno confiável. É uma demonstração viva da aplicação de práticas avançadas de desenvolvimento com o atual ecossistema Fullstack React/Next.js.
+
+---
+
+## 👤 Autor
+
+**Antonio Carlos**  
+Desenvolvedor Fullstack
+
+- **GitHub:** [https://github.com/devantonio27](https://github.com/devantonio27)
+- **LinkedIn:** [https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/](#https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/)
+
+---
+
+## 📄 Licença
+
+Este projeto é de código aberto e está licenciado sob os termos da licença [MIT](./LICENSE).
