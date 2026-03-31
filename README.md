@@ -119,7 +119,7 @@ O "Beewear E-commerce" começou como um projeto de estudo avançado e portfólio
 Desenvolvedor Fullstack
 
 - **GitHub:** [https://github.com/devantonio27](https://github.com/devantonio27)
-- **LinkedIn:** [https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/](#https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/)
+- **LinkedIn:** [https://www.linkedin.com/in/antonio-carlos-melo-b542a7281](https://www.linkedin.com/in/antonio-carlos-melo-b542a7281)
 
 ---
 
