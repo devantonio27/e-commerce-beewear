@@ -26,7 +26,7 @@ Este projeto foi construído com foco em produtividade e tecnologias modernas do
 - **Arquitetura Client/Server Components:** Separação clara entre componentes de interface e renderização do lado do servidor via Next.js App Router.
 - **Type Safety de ponta a ponta:** Uso conjunto e tipado do TypeScript, Zod e Drizzle ORM.
 - **Otimizações de Renderização:** Estratégias de cache com React Query e controle de invalidação de dados.
-- **Separação de Preocupações (SoC):** Divisão de lógicas complexas em *Actions*, *Hooks* customizados e *Componentes UI*.
+- **Separação de Preocupações (SoC):** Divisão de lógicas complexas em _Actions_, _Hooks_ customizados e _Componentes UI_.
 - **Mobile-first Design:** Layout responsivo focado inicialmente em dispositivos móveis, escalando suavemente para desktop.
 
 ---
@@ -72,10 +72,11 @@ src/
 ## 🔍 Code Review
 
 Constantes melhorias são aplicadas no projeto. Algumas das melhorias destacadas em codes reviews recentes incluem:
+
 - **Refatoração UI:** Migração e adaptação constante de layouts para tornar a experiência cross-device perfeita.
 - **Correções Críticas de Schema Zod/Drizzle:** Remoção de bugs silenciosos e tipagens flexíveis para assegurar consistência de dados estritos.
 - **Otimização de Código de Produção:** Limpeza rigorosa de imports ociosos e logs sensíveis ao longo do ciclo de vida da aplicação.
-- **Padronização:** Organização concisa nas *Query Keys e Mutation Keys* do React Query para afinar o cache e gerenciamento de estado cliente/servidor.
+- **Padronização:** Organização concisa nas _Query Keys e Mutation Keys_ do React Query para afinar o cache e gerenciamento de estado cliente/servidor.
 
 ---
 
@@ -98,20 +99,11 @@ No decorrer do desenvolvimento, soluções técnicas sofisticadas foram aplicada
 
 ---
 
-## 📸 Preview
-
-*(Insira abaixo imagens, GIFs ou vídeos curtos com o fluxo da aplicação)*
-
-![Preview Home](https://via.placeholder.com/800x450.png?text=E-commerce+Home)
-![Preview Carrinho e Checkout](https://via.placeholder.com/800x450.png?text=Rotas+de+Carrinho)
-
----
-
 ## 🟢 Deploy
 
 O projeto está disponível para acesso na URL abaixo:
 
-🔗 **[Acesso ao Beewear E-commerce (Placeholder)](#)**
+🔗 **[Acesso ao Beewear E-commerce (Placeholder)](#https://e-commerce-beewear.vercel.app/)**
 
 ---
 
@@ -127,7 +119,7 @@ O "Beewear E-commerce" começou como um projeto de estudo avançado e portfólio
 Desenvolvedor Fullstack
 
 - **GitHub:** [https://github.com/devantonio27](https://github.com/devantonio27)
-- **LinkedIn:** [Insira seu perfil do LinkedIn aqui](#)
+- **LinkedIn:** [https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/](#https://www.linkedin.com/in/antonio-carlos-melo-b542a7281/)
 
 ---
 
