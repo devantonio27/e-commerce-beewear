@@ -1,7 +1,6 @@
 "use client";
 
 import { ShoppingBasketIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 import { formatCentsToBRL } from "@/helpers/money";
@@ -29,7 +28,7 @@ export const Cart = () => {
           <ShoppingBasketIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="w-full sm:max-w-sm lg:max-w-md">
         <SheetHeader>
           <SheetTitle>Carrinho</SheetTitle>
         </SheetHeader>

@@ -18,7 +18,7 @@ const ProductItem = ({ product, textContainerClassName }: ProductItemProps) => {
   return (
     <Link
       href={`/product-variant/${firstVariant.slug}`}
-      className="flex flex-col gap-4"
+      className="flex min-w-[150px] flex-col gap-4 transition-transform duration-200 lg:min-w-0 lg:hover:scale-[1.03]"
     >
       <Image
         src={firstVariant.imageUrl}
@@ -29,7 +29,7 @@ const ProductItem = ({ product, textContainerClassName }: ProductItemProps) => {
         className="h-auto w-full rounded-3xl"
       />
       <div
-        className={cn("flex max-w-37.5 flex-col gap-1", textContainerClassName)}
+        className={cn("flex max-w-37.5 flex-col gap-1 lg:max-w-full", textContainerClassName)}
       >
         <p className="truncate text-sm font-medium">{product.name}</p>
         <p className="text-muted-foreground truncate text-xs font-medium">

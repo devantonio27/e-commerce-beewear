@@ -20,12 +20,12 @@ export const Header = () => {
   const { data: session } = authClient.useSession();
 
   return (
-    <header className="flex items-center justify-between p-5">
+    <header className="flex items-center justify-between p-5 lg:px-20 xl:px-40">
       <Link href="/">
         <Image src="/logo.svg" alt="BEWEAR" width={100} height={26.14} />
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 lg:gap-3">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">

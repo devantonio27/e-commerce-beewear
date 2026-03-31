@@ -23,7 +23,7 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
   };
   return (
     <>
-      <div className="px-5">
+      <div className="px-5 lg:px-0">
         <div className="space-y-4">
           <h3 className="font-medium">Quantidade</h3>
           <div className="w-25px flex items-center justify-between rounded-lg border">
@@ -37,7 +37,7 @@ const ProductActions = ({ productVariantId }: ProductActionsProps) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col space-y-4 px-5">
+      <div className="flex flex-col space-y-4 px-5 lg:px-0">
         <AddToCartButton
           productVariantId={productVariantId}
           quantity={quantity}
